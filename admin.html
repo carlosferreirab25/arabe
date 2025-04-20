@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Administração - Fragancia Arabe</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .admin-section {
+            padding: 60px 0;
+        }
+        
+        .admin-header {
+            background-color: var(--heading-color);
+            color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        
+        .admin-header h2 {
+            margin: 0;
+        }
+        
+        .admin-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .admin-card h3 {
+            color: var(--heading-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+        
+        .btn-admin {
+            background-color: var(--heading-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-admin:hover {
+            opacity: 0.9;
+        }
+        
+        .btn-whatsapp {
+            background-color: var(--whatsapp-color);
+        }
+        
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        
+        .product-list {
+            margin-top: 20px;
+        }
+        
+        .product-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .product-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+        
+        .product-info {
+            flex: 1;
+        }
+        
+        .product-info h4 {
+            margin: 0 0 5px;
+        }
+        
+        .product-info p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            color: var(--heading-color);
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .product-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .product-item img {
+                margin-right: 0;
+                margin-bottom: 10px;
+                width: 100%;
+                height: 150px;
+            }
+            
+            .product-actions {
+                margin-top: 10px;
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="announcement-bar">
+        <p>3% de desconto em pagamentos por PIX</p>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Fragancia Arabe</h1>
+                <p>Perfumes Árabes</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="masculinos.html">Masculinos</a></li>
+                    <li><a href="femininos.html">Femininos</a></li>
+                    <li><a href="unissex.html">Unissex</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-icon">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Painel de Administração</h1>
+        </div>
+    </div>
+
+    <section class="admin-section">
+        <div class="container">
+            <div class="admin-header">
+                <h2>Bem-vindo ao Painel de Administração</h2>
+                <p>Aqui você pode gerenciar produtos e configurações do site.</p>
+            </div>
+            
+            <div class="admin-card">
+                <h3>Configurações do WhatsApp</h3>
+                <form id="whatsapp-form">
+                    <div class="form-group">
+                        <label for="whatsapp-number">Número de WhatsApp (com código do país)</label>
+                        <input type="text" id="whatsapp-number" placeholder="Ex: 5511998871656" required>
+                        <small>Formato: 55 (Brasil) + DDD + número</small>
+                    </div>
+                    <button type="submit" class="btn-admin btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Atualizar Número de WhatsApp
+                    </button>
+                </form>
+            </div>
+            
+            <div class="admin-card">
+                <h3>Adicionar Novo Produto</h3>
+                <form id="add-product-form">
+                    <div class="form-group">
+                        <label for="product-name">Nome do Produto</label>
+                        <input type="text" id="product-name" placeholder="Ex: Perfume Árabe Masculino Premium" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-description">Descrição</label>
+                        <input type="text" id="product-description" placeholder="Ex: Fragrância intensa com notas amadeiradas" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-price">Preço (R$)</label>
+                        <input type="number" id="product-price" step="0.01" placeholder="Ex: 189.90" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-image">URL da Imagem</label>
+                        <input type="text" id="product-image" placeholder="Ex: images/perfume-arabe-1.jpg" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-category">Categoria</label>
+                        <select id="product-category" required>
+                            <option value="">Selecione uma categoria</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="unissex">Unissex</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-admin">
+                        <i class="fas fa-plus"></i> Adicionar Produto
+                    </button>
+                </form>
+            </div>
+            
+            <div class="admin-card">
+                <h3>Gerenciar Produtos</h3>
+                <div class="product-list" id="product-list">
+                    <!-- Produtos serão carregados via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Fragancia Arabe</h2>
+                    <p>Perfumes Árabes</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="produtos.html">Produtos</a></li>
+                        <li><a href="admin.html">Administração</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contato</h3>
+                    <p><i class="fab fa-whatsapp"></i> <span id="footer-whatsapp">(11) 99887-1656</span></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Fragancia Arabe - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/produtos_data.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/integrar_produtos.js"></script>
+    <script src="js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carregar número de WhatsApp atual
+            const whatsappInput = document.getElementById('whatsapp-number');
+            whatsappInput.value = whatsappNumber;
+            
+            // Formulário de atualização de WhatsApp
+            const whatsappForm = document.getElementById('whatsapp-form');
+            whatsappForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const novoNumero = whatsappInput.value.trim();
+                atualizarNumeroWhatsApp(novoNumero);
+                alert('Número de WhatsApp atualizado com sucesso!');
+            });
+            
+            // Formulário de adição de produto
+            const addProductForm = document.getElementById('add-product-form');
+            addProductForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const novoProduto = criarProduto(
+                    produtos.length > 0 ? Math.max(...produtos.map(p => p.id)) + 1 : 1,
+                    document.getElementById('product-name').value,
+                    document.getElementById('product-description').value,
+                    parseFloat(document.getElementById('product-price').value),
+                    document.getElementById('product-image').value,
+                    document.getElementById('product-category').value
+                );
+                
+                adicionarProduto(novoProduto);
+                alert('Produto adicionado com sucesso!');
+                addProductForm.reset();
+                carregarListaProdutos();
+            });
+            
+            // Carregar lista de produtos
+            carregarListaProdutos();
+            
+            // Função para carregar a lista de produtos
+            function carregarListaProdutos() {
+                const productList = document.getElementById('product-list');
+                
+                if (produtos.length === 0) {
+                    productList.innerHTML = '<p>Nenhum produto cadastrado.</p>';
+                    return;
+                }
+                
+                productList.innerHTML = '';
+                
+                produtos.forEach(produto => {
+                    const productItem = document.createElement('div');
+                    productItem.className = 'product-item';
+                    productItem.innerHTML = `
+                        <img src="${produto.imagem}" alt="${produto.nome}">
+                        <div class="product-info">
+                            <h4>${produto.nome}</h4>
+                            <p>${produto.descricao}</p>
+                            <p class="product-price">${formatarPreco(produto.preco)}</p>
+                            <p>Categoria: ${produto.categoria.charAt(0).toUpperCase() + produto.categoria.slice(1)}</p>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-admin btn-sm edit-product" data-id="${produto.id}">
+                                <i class="fas fa-edit"></i> Editar
+                            </button>
+                            <button class="btn-admin btn-danger btn-sm delete-product" data-id="${produto.id}">
+                                <i class="fas fa-trash"></i> Excluir
+                            </button>
+                        </div>
+                    `;
+                    
+                    productList.appendChild(productItem);
+                });
+                
+                // Adicionar eventos aos botões de edição
+                document.querySelectorAll('.edit-product').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const produtoId = parseInt(this.dataset.id);
+                        const produto = produtos.find(p => p.id === produtoId);
+                        if (produto) {
+                            criarModalEdicaoProduto(produto);
+                        }
+                    });
+                });
+                
+                // Adicionar eventos aos botões de exclusão
+                document.querySelectorAll('.delete-product').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const produtoId = parseInt(this.dataset.id);
+                        if (confirm('Tem certeza que deseja excluir este produto?')) {
+                            removerProduto(produtoId);
+                            carregarListaProdutos();
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

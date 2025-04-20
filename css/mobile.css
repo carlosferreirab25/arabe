@@ -1,0 +1,200 @@
+/* Estilos específicos para dispositivos móveis */
+
+@media (max-width: 992px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .category-grid, 
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    /* Header e navegação */
+    header .container {
+        padding: 10px 15px;
+    }
+    
+    nav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        height: 100vh;
+        background-color: white;
+        z-index: 1000;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        transition: left 0.3s ease;
+        padding: 80px 20px 20px;
+    }
+    
+    nav.active {
+        left: 0;
+    }
+    
+    nav ul {
+        flex-direction: column;
+    }
+    
+    nav ul li {
+        margin: 0 0 15px 0;
+    }
+    
+    .mobile-menu-icon {
+        display: block;
+        z-index: 1001;
+    }
+    
+    /* Banner principal */
+    .hero-banner {
+        padding: 30px 0;
+    }
+    
+    .payment-highlight {
+        padding: 20px;
+    }
+    
+    .payment-highlight h2 {
+        font-size: 18px;
+    }
+    
+    /* Seções de conteúdo */
+    .featured-categories,
+    .featured-products,
+    .about-section {
+        padding: 40px 0;
+    }
+    
+    .category-grid, 
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Página de produto */
+    .product-item {
+        flex-direction: column;
+    }
+    
+    .product-item img {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .product-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .product-actions button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    /* Formulários */
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajustes para telas muito pequenas */
+    .logo h1 {
+        font-size: 18px;
+    }
+    
+    .logo p {
+        font-size: 12px;
+    }
+    
+    .payment-highlight h2 {
+        font-size: 16px;
+    }
+    
+    .payment-highlight p {
+        font-size: 14px;
+    }
+    
+    .product-card .product-info h3 {
+        font-size: 16px;
+    }
+    
+    .product-price {
+        font-size: 18px;
+    }
+    
+    .product-installment {
+        font-size: 12px;
+    }
+    
+    .whatsapp-btn {
+        font-size: 14px;
+    }
+    
+    /* Ajustes para o painel admin em telas pequenas */
+    .admin-card {
+        padding: 15px;
+    }
+    
+    .btn-admin {
+        width: 100%;
+    }
+}
+
+/* Melhorias de acessibilidade para toque em dispositivos móveis */
+@media (hover: none) {
+    .btn, 
+    .whatsapp-btn, 
+    .btn-admin,
+    nav ul li a,
+    .product-card,
+    .category-card {
+        /* Aumentar área de toque */
+        padding: 12px;
+    }
+    
+    .mobile-menu-icon {
+        padding: 10px;
+    }
+    
+    /* Feedback visual ao tocar */
+    .btn:active, 
+    .whatsapp-btn:active, 
+    .btn-admin:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Ajustes para orientação paisagem em dispositivos móveis */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-banner {
+        padding: 20px 0;
+    }
+    
+    .payment-highlight {
+        padding: 15px;
+    }
+    
+    nav {
+        padding-top: 60px;
+    }
+    
+    .featured-categories,
+    .featured-products,
+    .about-section {
+        padding: 30px 0;
+    }
+}
